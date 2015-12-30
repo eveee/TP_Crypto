@@ -1,5 +1,6 @@
 package mac;
 import java.io.BufferedInputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,9 +11,24 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * HmacSHA allows to call different methods corresponding to HmacSHA[1|256|384|512].
+ * @author Brice Kessler, Eva Ly Kok
+ *
+ */
+
 public class HmacSHA {
 	
-	public void HmacSHA384(File file, String password) throws NoSuchAlgorithmException, InvalidKeyException, IllegalStateException, IOException{
+	/**
+	 * Makes the file <i>file</i> go through the HmacSHA384 algorithm with the key <i>password</i>.
+	 * @param file
+	 * @param password
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeyException
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	public static void HmacSHA384(File file, String password) throws NoSuchAlgorithmException, InvalidKeyException, IllegalStateException, IOException{
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		SecretKeySpec ks = new SecretKeySpec(password.getBytes(), "HmacSHA384");
 		Mac mac = Mac.getInstance("HmacSHA384");
@@ -33,7 +49,16 @@ public class HmacSHA {
 		in.close();
 	}
 	
-	public void HmacSHA512(File file, String password) throws NoSuchAlgorithmException, InvalidKeyException, IllegalStateException, IOException{
+	/**
+	 * Makes the file <i>file</i> go through the HmacSHA520 algorithm with the key <i>password</i>.
+	 * @param file
+	 * @param password
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeyException
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	public static void HmacSHA512(File file, String password) throws NoSuchAlgorithmException, InvalidKeyException, IllegalStateException, IOException{
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		SecretKeySpec ks = new SecretKeySpec(password.getBytes(), "HmacSHA512");
 		Mac mac = Mac.getInstance("HmacSHA512");
